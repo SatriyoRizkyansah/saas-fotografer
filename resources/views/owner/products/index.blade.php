@@ -2,7 +2,7 @@
     <x-slot name="header">
         <div class="flex items-center justify-between">
             <h2 class="text-xl font-bold text-slate-900">{{ __('Produk') }}</h2>
-            <a href="{{ route('owner.products.create') }}" class="inline-flex items-center px-5 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-200">
+            <a href="{{ route('owner.products.create') }}" class="inline-flex items-center px-5 py-2.5 bg-orange-600 text-white text-sm font-semibold rounded-lg hover:bg-orange-700 transition-all duration-200 shadow-sm hover:shadow">
                 <svg class="w-4 h-4 me-1" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
                 </svg>
@@ -41,7 +41,7 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-3">
                                             <a href="{{ route('owner.products.show', $product) }}" class="text-emerald-600 hover:text-emerald-800 transition">Detail</a>
-                                            <a href="{{ route('owner.products.edit', $product) }}" class="text-violet-600 hover:text-violet-800 transition">Edit</a>
+                                            <a href="{{ route('owner.products.edit', $product) }}" class="text-orange-600 hover:text-orange-800 transition">Edit</a>
                                             <form action="{{ route('owner.products.destroy', $product) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                                                 @csrf
                                                 @method('DELETE')
