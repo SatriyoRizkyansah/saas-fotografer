@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProductController extends Controller
@@ -107,5 +106,18 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('owner.products.index')->with('success', 'Produk berhasil dihapus!');
+    }
+
+    public function toggleActive(Product $product)
+    {
+        if ($product->owner_id !== Auth::id()) {
+            abort(403);
+        }
+
+        $product->update(['is_active' => !$product->is_active]);
+
+        $status = $product->is_active ? 'diaktifkan' : 'dinonaktifkan';
+
+        return redirect()->back()->with('success', "Produk berhasil {$status}!");
     }
 }

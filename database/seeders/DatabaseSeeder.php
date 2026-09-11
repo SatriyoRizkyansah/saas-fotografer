@@ -26,6 +26,20 @@ class DatabaseSeeder extends Seeder
             'bank_name' => 'Bank BCA',
             'bank_account_number' => '1234567890',
             'bank_account_name' => 'Fotografer Demo',
+            'role' => 'owner',
+            'email_verified_at' => now(),
+            'subscription_status' => 'active',
+            'subscription_valid_until' => now()->addYear(),
+            'has_storefront' => true,
+            'subscription_active' => true,
+        ]);
+
+        // Create Super Admin account
+        User::create([
+            'name' => 'Super Admin',
+            'email' => 'admin@snapphoto.id',
+            'password' => Hash::make('password'),
+            'role' => 'super_admin',
             'email_verified_at' => now(),
         ]);
 

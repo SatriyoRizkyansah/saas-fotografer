@@ -29,6 +29,7 @@
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Nama</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Kategori</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Harga</th>
+                                    <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Status</th>
                                     <th class="px-6 py-3 text-left text-xs font-semibold text-slate-500 uppercase tracking-wider">Aksi</th>
                                 </tr>
                             </thead>
@@ -39,9 +40,27 @@
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-900">{{ $product->name }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{{ $product->category->name ?? '-' }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-900">Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            @if ($product->is_active)
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-800">
+                                                    <span class="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-1.5"></span>Aktif
+                                                </span>
+                                            @else
+                                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-slate-100 text-slate-600">
+                                                    <span class="w-1.5 h-1.5 bg-slate-400 rounded-full mr-1.5"></span>Nonaktif
+                                                </span>
+                                            @endif
+                                        </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-3">
-                                            <a href="{{ route('owner.products.show', $product) }}" class="text-emerald-600 hover:text-emerald-800 transition">Detail</a>
+                                            <a href="{{ route('owner.products.show', $product) }}" class="text-orange-600 hover:text-orange-800 transition">Detail</a>
                                             <a href="{{ route('owner.products.edit', $product) }}" class="text-orange-600 hover:text-orange-800 transition">Edit</a>
+                                            <form action="{{ route('owner.products.toggle-active', $product) }}" method="POST" class="inline">
+                                                @csrf
+                                                @method('PATCH')
+                                                <button type="submit" class="text-amber-600 hover:text-amber-800 transition">
+                                                    {{ $product->is_active ? 'Nonaktifkan' : 'Aktifkan' }}
+                                                </button>
+                                            </form>
                                             <form action="{{ route('owner.products.destroy', $product) }}" method="POST" class="inline" onsubmit="return confirm('Yakin ingin menghapus produk ini?')">
                                                 @csrf
                                                 @method('DELETE')
@@ -58,7 +77,7 @@
                     </div>
                 @else
                     <div class="p-6 text-center">
-                        <p class="text-slate-400 text-sm py-8">Belum ada produk. <a href="{{ route('owner.products.create') }}" class="text-violet-600 hover:text-violet-800 font-medium hover:underline">Tambah produk baru</a></p>
+                        <p class="text-slate-400 text-sm py-8">Belum ada produk. <a href="{{ route('owner.products.create') }}" class="text-orange-600 hover:text-orange-800 font-medium hover:underline">Tambah produk baru</a></p>
                     </div>
                 @endif
             </div>

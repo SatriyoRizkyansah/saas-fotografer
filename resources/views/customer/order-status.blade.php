@@ -14,7 +14,7 @@
             {{-- SnapPhoto Branding Header --}}
             <div class="text-center mb-8">
                 <div class="inline-flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xs">S</div>
+                    <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xs">S</div>
                     <span class="font-bold text-slate-900 text-lg">SnapPhoto</span>
                 </div>
             </div>
@@ -62,7 +62,7 @@
                     </div>
                     <div class="flex justify-between">
                         <span class="text-sm text-slate-500">Harga</span>
-                        <span class="text-sm font-bold text-violet-600">Rp {{ number_format($transaction->product->price ?? 0, 0, ',', '.') }}</span>
+                        <span class="text-sm font-bold text-orange-600">Rp {{ number_format($transaction->product->price ?? 0, 0, ',', '.') }}</span>
                     </div>
                     <div class="flex justify-between">
                         <span class="text-sm text-slate-500">Tanggal</span>
@@ -72,12 +72,12 @@
             </div>
 
             {{-- Info --}}
-            <div class="bg-violet-50 rounded-xl border border-violet-100 p-5 sm:p-6">
+            <div class="bg-orange-50 rounded-xl border border-orange-100 p-5 sm:p-6">
                 <div class="flex items-start gap-3">
                     <span class="text-xl">💡</span>
                     <div>
-                        <h3 class="text-sm font-semibold text-violet-900">Tips</h3>
-                        <p class="text-sm text-violet-700 mt-1">Simpan halaman ini atau catat nomor pesanan Anda. Anda dapat memeriksa status pesanan kapan saja dengan merefresh halaman ini.</p>
+                        <h3 class="text-sm font-semibold text-orange-900">Tips</h3>
+                        <p class="text-sm text-orange-700 mt-1">Simpan halaman ini atau catat nomor pesanan Anda. Anda dapat memeriksa status pesanan kapan saja dengan merefresh halaman ini.</p>
                     </div>
                 </div>
             </div>

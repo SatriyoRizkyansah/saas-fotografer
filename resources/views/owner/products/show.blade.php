@@ -44,11 +44,11 @@
                         <p class="text-sm text-slate-400 mb-2">Atau copy link berikut:</p>
                         <div class="flex items-center gap-2 bg-slate-50 rounded-lg px-4 py-2.5 border border-slate-100">
                             <input type="text" value="{{ $checkoutUrl }}" readonly id="checkout-url" class="bg-transparent text-sm text-slate-600 flex-1 outline-none font-mono">
-                            <button onclick="navigator.clipboard.writeText(document.getElementById('checkout-url').value); this.textContent='Tersalin!'; setTimeout(() => this.textContent='Copy', 2000)" class="text-violet-600 hover:text-violet-800 text-sm font-semibold transition">Copy</button>
+                            <button onclick="navigator.clipboard.writeText(document.getElementById('checkout-url').value); this.textContent='Tersalin!'; setTimeout(() => this.textContent='Copy', 2000)" class="text-orange-600 hover:text-orange-800 text-sm font-semibold transition">Copy</button>
                         </div>
                     </div>
                     <div class="flex gap-3">
-                        <a href="{{ route('owner.products.edit', $product) }}" class="px-5 py-2.5 bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-200">Edit Produk</a>
+                        <a href="{{ route('owner.products.edit', $product) }}" class="px-5 py-2.5 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-200">Edit Produk</a>
                     </div>
                 </div>
             </div>

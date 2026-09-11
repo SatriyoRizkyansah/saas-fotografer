@@ -14,7 +14,7 @@
             {{-- SnapPhoto Branding Header --}}
             <div class="text-center mb-8">
                 <div class="inline-flex items-center gap-2 mb-4">
-                    <div class="w-8 h-8 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-lg flex items-center justify-center text-white font-bold text-xs">S</div>
+                    <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xs">S</div>
                     <span class="font-bold text-slate-900 text-lg">SnapPhoto</span>
                 </div>
             </div>
@@ -27,7 +27,7 @@
                 </div>
                 <div class="flex justify-between items-center border-t border-slate-100 pt-4">
                     <span class="text-lg font-semibold text-slate-900">{{ $product->name }}</span>
-                    <span class="text-2xl font-bold bg-gradient-to-r from-violet-600 to-indigo-600 bg-clip-text text-transparent">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                    <span class="text-2xl font-bold text-orange-600">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                 </div>
                 @if ($product->description)
                     <p class="mt-3 text-sm text-slate-500">{{ $product->description }}</p>
@@ -53,7 +53,7 @@
                     </div>
                     <div class="flex justify-between border-t border-slate-200 pt-2">
                         <span class="text-sm font-semibold text-slate-700">Total Bayar</span>
-                        <span class="text-sm font-bold text-violet-600">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
+                        <span class="text-sm font-bold text-orange-600">Rp {{ number_format($product->price, 0, ',', '.') }}</span>
                     </div>
                 </div>
             </div>
@@ -97,12 +97,12 @@
                         <div>
                             <label for="payment_proof" class="block text-sm font-medium text-slate-700 mb-1">Bukti Transfer <span class="text-red-500">*</span></label>
                             <input type="file" id="payment_proof" name="payment_proof" accept="image/jpg,image/jpeg,image/png" required
-                                class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-violet-500/20 focus:border-violet-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-violet-50 file:text-violet-700 hover:file:bg-violet-100">
+                                class="w-full px-4 py-2.5 bg-white border border-slate-200 rounded-lg text-sm text-slate-900 focus:outline-none focus:ring-2 focus:ring-orange-500/20 focus:border-orange-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-orange-50 file:text-orange-700 hover:file:bg-orange-100">
                             <p class="mt-1 text-xs text-slate-400">Format: JPG, JPEG, PNG. Maks 2MB.</p>
                         </div>
 
                         <div class="pt-2">
-                            <button type="submit" class="w-full px-5 py-3 bg-gradient-to-r from-violet-600 to-indigo-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-violet-500/25 transition-all duration-200">
+                            <button type="submit" class="w-full px-5 py-3 bg-gradient-to-r from-orange-500 to-orange-600 text-white text-sm font-semibold rounded-lg hover:shadow-lg hover:shadow-orange-500/25 transition-all duration-200">
                                 Kirim Pesanan
                             </button>
                         </div>

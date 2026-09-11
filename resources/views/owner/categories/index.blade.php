@@ -55,7 +55,7 @@
                     </div>
                 @else
                     <div class="p-6 text-center">
-                        <p class="text-slate-400 text-sm py-8">Belum ada kategori. <a href="{{ route('owner.categories.create') }}" class="text-violet-600 hover:text-violet-800 font-medium hover:underline">Tambah kategori baru</a></p>
+                        <p class="text-slate-400 text-sm py-8">Belum ada kategori. <a href="{{ route('owner.categories.create') }}" class="text-orange-600 hover:text-orange-800 font-medium hover:underline">Tambah kategori baru</a></p>
                     </div>
                 @endif
             </div>

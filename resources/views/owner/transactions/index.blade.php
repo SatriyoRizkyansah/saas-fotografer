@@ -42,7 +42,7 @@
                                         </td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm text-slate-500">{{ $transaction->created_at->format('d/m/Y H:i') }}</td>
                                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
-                                            <a href="{{ route('owner.transactions.show', $transaction) }}" class="text-violet-600 hover:text-violet-800 transition">Detail</a>
+                                            <a href="{{ route('owner.transactions.show', $transaction) }}" class="text-orange-600 hover:text-orange-800 transition">Detail</a>
                                         </td>
                                     </tr>
                                 @endforeach
