@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\OwnerSetting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class SettingsController extends Controller
 {
@@ -21,11 +22,13 @@ class SettingsController extends Controller
 
         // Get or generate store URL
         $storeUrl = null;
+        $storeQrCode = null;
         if ($setting->owner && $setting->owner->store_uuid) {
             $storeUrl = route('storefront.show', $setting->owner->store_uuid);
+            $storeQrCode = QrCode::size(220)->margin(1)->generate($storeUrl);
         }
 
-        return view('owner.settings.index', compact('setting', 'storeUrl'));
+        return view('owner.settings.index', compact('setting', 'storeUrl', 'storeQrCode'));
     }
 
     public function store(Request $request)

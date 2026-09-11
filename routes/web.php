@@ -43,6 +43,8 @@ Route::get('/checkout/{product}', [CheckoutController::class, 'index'])->name('c
 Route::post('/checkout/{product}', [CheckoutController::class, 'store'])->name('checkout.store');
 Route::get('/order/status/{uuid}', [CheckoutController::class, 'orderStatus'])->name('order.status');
 Route::get('/store/{store_uuid}', [StoreController::class, 'show'])->name('storefront.show');
+// Booking from storefront modal (POST, returns JSON or redirect)
+Route::post('/store/{store_uuid}/book/{product}', [CheckoutController::class, 'storeFromStorefront'])->name('storefront.book');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

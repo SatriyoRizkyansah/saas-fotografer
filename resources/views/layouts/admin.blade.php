@@ -76,16 +76,16 @@
                 </div>
             </div>
 
-            @isset($header)
+            @hasSection('header')
                 <div class="bg-white border-b border-slate-200">
                     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-                        {{ $header }}
+                        @yield('header')
                     </div>
                 </div>
-            @endisset
+            @endif
 
             <main class="min-h-0">
-                {{ $slot }}
+                @yield('content')
             </main>
         </div>
     </div>

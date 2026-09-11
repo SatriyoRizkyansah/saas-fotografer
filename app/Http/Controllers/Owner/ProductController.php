@@ -7,7 +7,6 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ProductController extends Controller
 {
@@ -55,13 +54,7 @@ class ProductController extends Controller
 
         $product->load('category');
 
-        // Generate QR Code URL
-        $checkoutUrl = route('checkout', $product->id);
-
-        // Generate QR Code as SVG
-        $qrCode = QrCode::size(300)->generate($checkoutUrl);
-
-        return view('owner.products.show', compact('product', 'checkoutUrl', 'qrCode'));
+        return view('owner.products.show', compact('product'));
     }
 
     public function edit(Product $product)
