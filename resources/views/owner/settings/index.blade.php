@@ -3,8 +3,7 @@
         <h2 class="text-xl font-bold text-slate-900">{{ __('Pengaturan Toko') }}</h2>
     </x-slot>
 
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="max-w-5xl mx-auto">
+    <div>
 
             @if(session('success'))
                 <div class="mb-6 flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-sm">
@@ -280,7 +279,6 @@
 
                 </div>
             </div>
-        </div>
     </div>
 
     <script>

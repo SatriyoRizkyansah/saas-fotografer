@@ -34,11 +34,11 @@ class SettingsController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'store_name' => 'nullable|string|max:255',
-            'store_description' => 'nullable|string',
-            'brand_color' => 'nullable|regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i',
-            'social_links.*' => 'nullable|url',
-            'is_published' => 'boolean',
+            'store_name'        => ['nullable', 'string', 'max:255'],
+            'store_description' => ['nullable', 'string'],
+            'brand_color'       => ['nullable', 'regex:/^#([a-f0-9]{6}|[a-f0-9]{3})$/i'],
+            'social_links.*'    => ['nullable', 'url'],
+            'is_published'      => ['boolean'],
         ]);
 
         $setting = $request->user()->ownerSetting;

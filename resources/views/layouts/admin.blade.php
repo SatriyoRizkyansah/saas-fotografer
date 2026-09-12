@@ -78,14 +78,16 @@
 
             @hasSection('header')
                 <div class="bg-white border-b border-slate-200">
-                    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                         @yield('header')
                     </div>
                 </div>
             @endif
 
             <main class="min-h-0">
-                @yield('content')
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                    @yield('content')
+                </div>
             </main>
         </div>
     </div>

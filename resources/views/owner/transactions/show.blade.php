@@ -10,8 +10,7 @@ use Illuminate\Support\Facades\Storage;
         </div>
     </x-slot>
 
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="max-w-5xl mx-auto space-y-6">
+    <div class="space-y-6">
             {{-- Customer Info --}}
             <div class="bg-white rounded-xl border border-slate-100 p-5 sm:p-6">
                 <h3 class="text-lg font-semibold text-slate-900 mb-4">Informasi Customer</h3>
@@ -100,6 +99,5 @@ use Illuminate\Support\Facades\Storage;
                     </div>
                 </div>
             @endif
-        </div>
     </div>
 </x-app-layout>

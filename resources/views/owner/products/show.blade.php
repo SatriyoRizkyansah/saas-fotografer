@@ -12,8 +12,7 @@
         </div>
     </x-slot>
 
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="max-w-3xl mx-auto space-y-5">
+    <div class="space-y-5">
 
             @if(session('success'))
                 <div class="flex items-center gap-3 p-4 bg-emerald-50 border border-emerald-200 text-emerald-700 rounded-xl text-sm">
@@ -117,6 +116,5 @@
                 </div>
             </div>
 
-        </div>
     </div>
 </x-app-layout>

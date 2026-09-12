@@ -3,8 +3,7 @@
         <h2 class="text-xl font-bold text-slate-900">Dashboard</h2>
     </x-slot>
 
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="max-w-5xl mx-auto">
+    <div>
             {{-- Stats Cards --}}
             <div class="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 mb-6">
                 <div class="bg-white rounded-xl border border-slate-100 p-4 sm:p-5">
@@ -71,6 +70,5 @@
                     </a>
                 </div>
             </div>
-        </div>
     </div>
 </x-app-layout>

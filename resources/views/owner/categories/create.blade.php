@@ -3,8 +3,7 @@
         <h2 class="text-xl font-bold text-slate-900">{{ __('Tambah Kategori') }}</h2>
     </x-slot>
 
-    <div class="p-4 sm:p-6 lg:p-8">
-        <div class="max-w-5xl mx-auto">
+    <div>
             <div class="bg-white rounded-xl border border-slate-100 p-5 sm:p-6">
                 <form action="{{ route('owner.categories.store') }}" method="POST">
                     @csrf
@@ -21,6 +20,5 @@
                     </div>
                 </form>
             </div>
-        </div>
     </div>
 </x-app-layout>

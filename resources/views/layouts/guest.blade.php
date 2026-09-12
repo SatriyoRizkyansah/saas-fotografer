@@ -12,7 +12,7 @@
 <body class="font-sans antialiased bg-slate-50">
     <div class="min-h-screen flex flex-col items-center justify-center px-4 py-8">
         <a href="/" class="flex items-center gap-2 mb-8">
-            <div class="w-10 h-10 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center text-white font-bold text-lg">S</div>
+            <div class="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white font-bold text-lg">S</div>
             <span class="text-xl font-bold text-slate-900">SnapPhoto</span>
         </a>
         <div class="w-full max-w-md">
