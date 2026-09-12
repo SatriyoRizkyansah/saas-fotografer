@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ $setting->store_name ?? 'SnapPhoto' }}</title>
+    <title>{{ $setting->store_name ?? config('app.name', 'Sellflow') }}</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700,800&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -29,8 +29,8 @@
                 {{ strtoupper(substr($setting->store_name ?? 'S', 0, 1)) }}
             </div>
             <div>
-                <p class="font-bold text-slate-900 leading-tight">{{ $setting->store_name ?? 'SnapPhoto' }}</p>
-                <p class="text-xs text-slate-400 leading-tight">Photography Studio</p>
+                <p class="font-bold text-slate-900 leading-tight">{{ $setting->store_name ?? config('app.name', 'Sellflow') }}</p>
+                <p class="text-xs text-slate-400 leading-tight">Official Store</p>
             </div>
         </div>
 
@@ -55,7 +55,7 @@
 <section class="hero-gradient py-16 sm:py-20">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 text-center">
         <h1 class="text-4xl sm:text-5xl font-extrabold text-white mb-4 leading-tight">
-            {{ $setting->store_name ?? 'SnapPhoto' }}
+            {{ $setting->store_name ?? config('app.name', 'Sellflow') }}
         </h1>
         @if($setting->store_description)
             <p class="text-white/80 text-lg max-w-xl mx-auto mb-8">{{ $setting->store_description }}</p>

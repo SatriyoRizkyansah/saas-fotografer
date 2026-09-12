@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'SnapPhoto') }} — Super Admin</title>
+    <title>{{ config('app.name', 'Sellflow') }} — Super Admin</title>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:300,400,500,600,700&display=swap" rel="stylesheet" />
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -78,14 +78,14 @@
 
             @hasSection('header')
                 <div class="bg-white border-b border-slate-200">
-                    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+                    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
                         @yield('header')
                     </div>
                 </div>
             @endif
 
             <main class="min-h-0">
-                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+                <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
                     @yield('content')
                 </div>
             </main>

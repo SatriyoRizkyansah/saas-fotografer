@@ -14,7 +14,7 @@
     {{-- Top bar --}}
     <div class="bg-white border-b border-slate-200 sticky top-0 z-10">
         <div class="max-w-lg mx-auto px-4 py-3 flex items-center gap-3">
-            <div class="w-8 h-8 bg-gradient-to-br from-orange-500 to-orange-600 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">S</div>
+            <div class="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center text-white font-bold text-xs flex-shrink-0">S</div>
             <div class="flex-1 min-w-0">
                 <p class="text-xs text-slate-400 leading-none">Checkout untuk</p>
                 <p class="text-sm font-semibold text-slate-900 truncate">{{ $product->name }}</p>
@@ -173,7 +173,7 @@
             </form>
         </div>
 
-        <p class="text-center text-xs text-slate-400 pb-4">Powered by <span class="font-semibold text-orange-500">SnapPhoto</span></p>
+        <p class="text-center text-xs text-slate-400 pb-4">Powered by <span class="font-semibold text-orange-500">{{ config('app.name', 'Sellflow') }}</span></p>
     </div>
 
     <script>
