@@ -196,33 +196,51 @@
             </div>
             @endif
 
-            {{-- Payment info --}}
-            <div class="mx-5 mt-4 p-4 bg-slate-50 border border-slate-200 rounded-xl">
-                <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-3">Informasi Pembayaran</p>
-                <div class="space-y-1.5">
-                    <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">Bank</span>
-                        <span class="font-medium text-slate-900">{{ $setting->owner->bank_name ?? '-' }}</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">No. Rekening</span>
-                        <span class="font-mono font-semibold text-slate-900">{{ $setting->owner->bank_account_number ?? '-' }}</span>
-                    </div>
-                    <div class="flex justify-between text-sm">
-                        <span class="text-slate-500">Atas Nama</span>
-                        <span class="font-medium text-slate-900">{{ $setting->owner->bank_account_name ?? '-' }}</span>
-                    </div>
-                    <div class="flex justify-between text-sm border-t border-slate-200 pt-2 mt-2">
-                        <span class="font-semibold text-slate-700">Total Bayar</span>
-                        <span id="modalTotalPay" class="font-bold text-brand"></span>
-                    </div>
-                </div>
-            </div>
-
             {{-- Booking form --}}
-            <form id="bookingForm" method="POST" enctype="multipart/form-data" class="px-5 pb-6">
+            <form id="bookingForm" method="POST" enctype="multipart/form-data" action="#" class="px-5 pb-6">
                 @csrf
-                {{-- action will be set dynamically by JS --}}
+                {{-- Action di-set via JS. Hidden field untuk restore saat validation error --}}
+                <input type="hidden" id="hiddenActionUrl" name="_action_url" value="{{ old('_action_url', '') }}">
+
+                {{-- Pilih Rekening — di dalam form supaya ikut submit --}}
+                <div class="mt-4">
+                    <p class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-2">Pilih Rekening Tujuan</p>
+                    @if($paymentMethods->isEmpty())
+                        <p class="text-xs text-slate-400 py-2">Belum ada metode pembayaran tersedia.</p>
+                    @else
+                    <div class="space-y-2">
+                        @foreach($paymentMethods as $pm)
+                        <label class="flex items-center gap-3 p-3 border border-slate-200 rounded-xl cursor-pointer hover:bg-orange-50 hover:border-orange-200 transition">
+                            <input type="radio" name="payment_method_id" value="{{ $pm->id }}"
+                                   {{ (old('payment_method_id', $pm->is_default ? $pm->id : ($loop->first ? $pm->id : '')) == $pm->id) ? 'checked' : '' }}
+                                   required
+                                   class="w-4 h-4 text-orange-500 border-slate-300 focus:ring-orange-500/30"
+                                   onchange="updateModalInfo('{{ addslashes($pm->bank_name) }}', '{{ addslashes($pm->account_number) }}', '{{ addslashes($pm->account_name) }}')">
+                            <div class="flex-1 min-w-0">
+                                <p class="text-sm font-semibold text-slate-900">{{ $pm->bank_name }}
+                                    @if($pm->is_default)<span class="text-[10px] font-bold px-1.5 py-0.5 bg-orange-100 text-orange-600 rounded-full ml-1">Utama</span>@endif
+                                </p>
+                                <p class="text-xs text-slate-500 font-mono">{{ $pm->account_number }} &mdash; {{ $pm->account_name }}</p>
+                            </div>
+                        </label>
+                        @endforeach
+                    </div>
+                    <div class="mt-2 p-3 bg-orange-50 border border-orange-100 rounded-xl space-y-1">
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Bank</span>
+                            <span class="font-semibold text-slate-900" id="modalInfoBank">{{ $paymentMethods->where('is_default', true)->first()?->bank_name ?? $paymentMethods->first()?->bank_name ?? '-' }}</span>
+                        </div>
+                        <div class="flex justify-between text-xs">
+                            <span class="text-slate-500">Nomor</span>
+                            <span class="font-mono font-bold text-slate-900" id="modalInfoNumber">{{ $paymentMethods->where('is_default', true)->first()?->account_number ?? $paymentMethods->first()?->account_number ?? '-' }}</span>
+                        </div>
+                        <div class="flex justify-between text-xs border-t border-orange-200 pt-1 mt-1">
+                            <span class="font-semibold text-slate-700">Total</span>
+                            <span id="modalTotalPay" class="font-bold text-brand"></span>
+                        </div>
+                    </div>
+                    @endif
+                </div>
 
                 <div class="mt-5 space-y-4">
                     {{-- Name --}}
@@ -320,14 +338,22 @@ function formatRupiah(n) {
     return 'Rp ' + Number(n).toLocaleString('id-ID');
 }
 
+function updateModalInfo(bank, number, name) {
+    const b = document.getElementById('modalInfoBank');
+    const n = document.getElementById('modalInfoNumber');
+    if (b) b.textContent = bank;
+    if (n) n.textContent = number;
+}
+
 function openBookingModal(id, name, price, desc, actionUrl) {
     // Populate header
     document.getElementById('modalTitle').textContent  = name;
     document.getElementById('modalPrice').textContent  = formatRupiah(price);
     document.getElementById('modalTotalPay').textContent = formatRupiah(price);
 
-    // Set form action
+    // Set form action + simpan di hidden field (untuk restore saat validation error)
     form.action = actionUrl;
+    document.getElementById('hiddenActionUrl').value = actionUrl;
 
     // Show modal
     modal.classList.remove('hidden');
@@ -382,12 +408,14 @@ form.addEventListener('submit', () => {
         Mengirim...`;
 });
 
-// Re-open modal if there are validation errors (form was submitted)
+// Re-open modal jika ada validation errors (form sudah disubmit)
 @if($errors->any())
     window.addEventListener('DOMContentLoaded', () => {
-        @if(old('_product_id'))
-        // We'd need product info from session; for now just open the modal blank with errors showing
-        @endif
+        // Restore form action dari hidden field
+        const savedAction = document.getElementById('hiddenActionUrl').value;
+        if (savedAction && savedAction !== '') {
+            form.action = savedAction;
+        }
         modal.classList.remove('hidden');
         document.body.style.overflow = 'hidden';
         requestAnimationFrame(() => {

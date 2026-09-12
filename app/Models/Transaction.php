@@ -15,6 +15,7 @@ class Transaction extends Model
         'uuid',
         'owner_id',
         'product_id',
+        'payment_method_id',
         'customer_name',
         'customer_email',
         'customer_phone',
@@ -39,5 +40,10 @@ class Transaction extends Model
     public function product(): BelongsTo
     {
         return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function paymentMethod(): BelongsTo
+    {
+        return $this->belongsTo(OwnerPaymentMethod::class, 'payment_method_id');
     }
 }

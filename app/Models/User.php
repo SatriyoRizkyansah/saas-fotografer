@@ -26,9 +26,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'bank_name',
-        'bank_account_number',
-        'bank_account_name',
         'role',
         'store_uuid',
         'app_name',
@@ -72,6 +69,11 @@ class User extends Authenticatable
     public function ownerPaymentMethods(): HasMany
     {
         return $this->hasMany(OwnerPaymentMethod::class, 'owner_id');
+    }
+
+    public function activePaymentMethods(): HasMany
+    {
+        return $this->hasMany(OwnerPaymentMethod::class, 'owner_id')->where('is_active', true)->orderByDesc('is_default');
     }
 
     public function ownerSetting()
